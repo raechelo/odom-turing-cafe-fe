@@ -7,7 +7,7 @@ class ReservationForm extends Component {
       name: '',
       date: '',
       time: '',
-      number: ''
+      number: undefined
     }
   }
 
