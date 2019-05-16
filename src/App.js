@@ -14,11 +14,19 @@ class App extends Component {
     fetch('http://localhost:3001/api/v1/reservations')
       .then(res => res.json())
       .then(reservations => this.setState({reservations}))
+      .catch(err => new Error(err))
   }
 
   addReservation = (res) => {
-    const newReservation = {...res, id: Date.now()}
-    this.setState({ reservations: [...this.state.reservations, newReservation]})
+    fetch('http://localhost:3001/api/v1/reservations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(res)
+    })
+    .then(res => res.json())
+    .catch(err => new Error(err))
   }
 
   render() {
