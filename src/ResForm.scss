@@ -1,0 +1,15 @@
+.ResForm {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 10px;
+  height: 1.5rem;
+
+  input {
+    padding-left: 2px;
+  }
+
+  button {
+    background-color: teal;
+    color: white;
+  }
+}

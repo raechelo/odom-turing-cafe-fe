@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import CardContainer from './CardContainer';
+import ReservationForm from './ReservationForm';
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      users: []
+      reservations: []
     }
   }
 
   componentDidMount = () => {
     fetch('http://localhost:3001/api/v1/reservations')
       .then(res => res.json())
-      .then(users => this.setState({users}))
+      .then(reservations => this.setState({reservations}))
+  }
+
+  addReservation = (res) => {
+    const newReservation = {...res, id: Date.now()}
+    this.setState({ reservations: [...this.state.reservations, newReservation]})
   }
 
   render() {
@@ -23,7 +29,8 @@ class App extends Component {
 
         </div>
         <div className='resy-container'>
-          <CardContainer users={this.state.users} />
+          <ReservationForm addReservation={this.addReservation} />
+          <CardContainer reservations={this.state.reservations} />
         </div>
       </div>
     )
