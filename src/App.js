@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   addReservation = (res) => {
-    fetch('http://localhost:3001/api/v1/reservations', {
+    return fetch('http://localhost:3001/api/v1/reservations', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,11 +31,14 @@ class App extends Component {
   }
 
   deleteReservation = (id) => {
-    fetch('http://localhost:3001/api/v1/reservations', {
-      method: 'DELETE'
+    const oldRes = this.state.reservations.find(r => r.id === id)
+    return fetch('http://localhost:3001/api/v1/reservations', {
+      method: 'DELETE',
+      body: JSON.stringify(oldRes)
     })
-    .then(res => res.json())
+    .then(res => console.log('response:', res.json()))
     .then(data => console.log(data))
+    .catch(err => console.log(err))
   }
 
   render() {
@@ -43,10 +46,9 @@ class App extends Component {
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
-
+        <ReservationForm addReservation={this.addReservation} />
         </div>
         <div className='resy-container'>
-          <ReservationForm addReservation={this.addReservation} />
           <CardContainer deleteReservation={this.deleteReservation} reservations={this.state.reservations} />
         </div>
       </div>
