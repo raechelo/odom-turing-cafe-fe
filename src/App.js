@@ -26,6 +26,7 @@ class App extends Component {
       body: JSON.stringify(res)
     })
     .then(res => res.json())
+    .then(res => this.setState({ reservations: [...this.state.reservations, res]}))
     .catch(err => new Error(err))
   }
 
