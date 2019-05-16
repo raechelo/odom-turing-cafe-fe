@@ -1,0 +1,22 @@
+.Card {
+  background-color: white;
+  border: 3px solid teal;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 1rem;
+  max-height: 8rem;
+  min-width: 11rem;
+  padding: 10px;
+
+  h4, p {
+    color: teal;
+    margin: .2rem;
+    text-align: center;
+  }
+
+  button {
+    background-color: teal;
+    color: white;
+    width: 80%;
+  }
+}

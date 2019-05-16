@@ -5,7 +5,7 @@ const CardContainer = (props) => {
   let displayCard = props.users.map(u => (<Card {...u} />))
 
   return (
-    <section>
+    <section className='CardContainer'>
       {displayCard}
     </section>
   )
